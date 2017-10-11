@@ -23,9 +23,14 @@ import javax.swing.border.Border;
 
 
 public class Componentes extends JFrame{
-	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3;
+	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3,panelCentroret,panelClave;
 	public Usuario usuario1;
 	public String nomi,apeli;
+	public transferencia transferencias;
+	public consulta consultas;
+	public CambioClave cambioClave;
+	public Pagos pagos;
+	public Retiro retiro2;
 	public int clav,sald,celi;
 	public HashMap<Integer, Usuario> mapa = new HashMap<Integer, Usuario>();
 	public Componentes(String titulo){
@@ -556,15 +561,313 @@ public class Componentes extends JFrame{
 							panelCentro.setVisible(true);
 						}
 			        });
-			        limpiar.addActionListener (new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							tarjeta1.setText(" ");
-						}
-			        });
+			        
 			        salir.addActionListener (new ActionListener(){
 						public void actionPerformed(ActionEvent e){
 							panelCentro2.setVisible(false);
 							panelCentro.setVisible(true);
+						}
+			        });
+			        boton1.addActionListener (new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							panelCentro2.setVisible(false);
+							panelCentroret = new JPanel( );
+					        conten.add( panelCentroret, BorderLayout.CENTER );
+							panelCentroret.setLayout(new GridBagLayout( ));
+							GridBagConstraints constraint4 = new GridBagConstraints( );
+							constraint4.gridx = 0;
+					        constraint4.gridy = 0;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        Insets insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel valor1=new JLabel("20.000");
+							panelCentroret.add(valor1,constraint4);
+							constraint4.gridx = 2;
+					        constraint4.gridy = 0;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel valor2=new JLabel("50.000");
+							panelCentroret.add(valor2,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel valor3=new JLabel("100.000");
+							panelCentroret.add(valor3,constraint4);
+							constraint4.gridx = 2;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel valor4=new JLabel("200.000");
+							panelCentroret.add(valor4,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 4;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel valor5 =new JLabel("400.000");
+							panelCentroret.add(valor5,constraint4);
+							constraint4.gridx = 2;
+					        constraint4.gridy = 4;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel valor6=new JLabel("600.000");
+							panelCentroret.add(valor6,constraint4);
+							constraint1.gridx = 0;
+					        constraint1.gridy = 2;
+					        constraint1.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint1.insets = insets4;
+							JButton boton6= new JButton("OK");
+							panelDerecha.add(boton6,constraint1);
+							cancelar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelCentro2.setVisible(true);
+								}
+							});
+							salir.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelCentro.setVisible(true);
+								}
+							});
+							boton1.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelClave = new JPanel( );
+							        conten.add( panelClave, BorderLayout.CENTER );
+									panelClave.setLayout(new GridBagLayout( ));
+									GridBagConstraints constraint4 = new GridBagConstraints( );
+									constraint4.gridx = 0;
+							        constraint4.gridy = 2;
+							        constraint4.fill = GridBagConstraints.NONE;
+							        Insets insets4 = new Insets( 5, 10, 5, 10 );
+							        constraint4.insets = insets4;
+									JLabel clave= new JLabel("Ingrese su clave");
+									panelClave.add(clave,constraint4);
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+										}
+									});
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											int clav2=Integer.parseInt(tarjeta1.getText());
+											if(clav2==mapa.get(celi).getClave()) {
+												retiro2 = new Retiro(mapa.get(celi).getSaldo(),20000);
+												tarjeta1.setText(" ");
+												if(retiro2.getRetiro()>=0) {
+													retiro1.setText("Retire su dinero");
+													sald=retiro2.getRetiro();
+													clave.setText("Saldo Nuevo: "+sald);
+												}else {
+													retiro1.setText("saldo insuficiente");
+												}
+												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+									
+									
+								}
+							});
+							boton2.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelClave = new JPanel( );
+							        conten.add( panelClave, BorderLayout.CENTER );
+									panelClave.setLayout(new GridBagLayout( ));
+									GridBagConstraints constraint4 = new GridBagConstraints( );
+									constraint4.gridx = 0;
+							        constraint4.gridy = 2;
+							        constraint4.fill = GridBagConstraints.NONE;
+							        Insets insets4 = new Insets( 5, 10, 5, 10 );
+							        constraint4.insets = insets4;
+									JLabel clave= new JLabel("Ingrese su clave");
+									panelClave.add(clave,constraint4);
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											int clav2=Integer.parseInt(tarjeta1.getText());
+											if(clav2==mapa.get(celi).getClave()) {
+												tarjeta1.setText(" ");
+												retiro2 = new Retiro(mapa.get(celi).getSaldo(),100000);
+												if(retiro2.getRetiro()>=0) {
+													retiro1.setText("Retire su dinero");
+													sald=retiro2.getRetiro();
+													clave.setText("Saldo Nuevo: "+sald);
+												}else {
+													retiro1.setText("saldo insuficiente");
+												}
+												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+									
+									
+								}
+							});
+							boton3.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelClave = new JPanel( );
+							        conten.add( panelClave, BorderLayout.CENTER );
+									panelClave.setLayout(new GridBagLayout( ));
+									GridBagConstraints constraint4 = new GridBagConstraints( );
+									constraint4.gridx = 0;
+							        constraint4.gridy = 2;
+							        constraint4.fill = GridBagConstraints.NONE;
+							        Insets insets4 = new Insets( 5, 10, 5, 10 );
+							        constraint4.insets = insets4;
+									JLabel clave= new JLabel("Ingrese su clave");
+									panelClave.add(clave,constraint4);
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											int clav2=Integer.parseInt(tarjeta1.getText());
+											if(clav2==mapa.get(celi).getClave()) {
+												tarjeta1.setText(" ");
+												retiro2 = new Retiro(mapa.get(celi).getSaldo(),400000);
+												if(retiro2.getRetiro()>=0) {
+													retiro1.setText("Retire su dinero");
+													sald=retiro2.getRetiro();
+													clave.setText("Saldo Nuevo: "+sald);
+												}else {
+													retiro1.setText("saldo insuficiente");
+												}
+												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+									
+									
+								}
+							});
+							boton4.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelClave = new JPanel( );
+							        conten.add( panelClave, BorderLayout.CENTER );
+									panelClave.setLayout(new GridBagLayout( ));
+									GridBagConstraints constraint4 = new GridBagConstraints( );
+									constraint4.gridx = 0;
+							        constraint4.gridy = 2;
+							        constraint4.fill = GridBagConstraints.NONE;
+							        Insets insets4 = new Insets( 5, 10, 5, 10 );
+							        constraint4.insets = insets4;
+									JLabel clave= new JLabel("Ingrese su clave");
+									panelClave.add(clave,constraint4);
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											int clav2=Integer.parseInt(tarjeta1.getText());
+											if(clav2==mapa.get(celi).getClave()) {
+												tarjeta1.setText(" ");
+												retiro2 = new Retiro(mapa.get(celi).getSaldo(),50000);
+												if(retiro2.getRetiro()>=0) {
+													retiro1.setText("Retire su dinero");
+													sald=retiro2.getRetiro();
+													clave.setText("Saldo Nuevo: "+sald);
+												}else {
+													retiro1.setText("saldo insuficiente");
+												}
+												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+									
+									
+								}
+							});
+							boton5.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelClave = new JPanel( );
+							        conten.add( panelClave, BorderLayout.CENTER );
+									panelClave.setLayout(new GridBagLayout( ));
+									GridBagConstraints constraint4 = new GridBagConstraints( );
+									constraint4.gridx = 0;
+							        constraint4.gridy = 2;
+							        constraint4.fill = GridBagConstraints.NONE;
+							        Insets insets4 = new Insets( 5, 10, 5, 10 );
+							        constraint4.insets = insets4;
+									JLabel clave= new JLabel("Ingrese su clave");
+									panelClave.add(clave,constraint4);
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											int clav2=Integer.parseInt(tarjeta1.getText());
+											if(clav2==mapa.get(celi).getClave()) {
+												tarjeta1.setText(" ");
+												retiro2 = new Retiro(mapa.get(celi).getSaldo(),200000);
+												if(retiro2.getRetiro()>=0) {
+													retiro1.setText("Retire su dinero");
+													sald=retiro2.getRetiro();
+													clave.setText("Saldo Nuevo: "+sald);
+												}else {
+													retiro1.setText("saldo insuficiente");
+												}
+												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+									
+									
+								}
+							});
+							boton6.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelCentroret.setVisible(false);
+									panelClave = new JPanel( );
+							        conten.add( panelClave, BorderLayout.CENTER );
+									panelClave.setLayout(new GridBagLayout( ));
+									GridBagConstraints constraint4 = new GridBagConstraints( );
+									constraint4.gridx = 0;
+							        constraint4.gridy = 2;
+							        constraint4.fill = GridBagConstraints.NONE;
+							        Insets insets4 = new Insets( 5, 10, 5, 10 );
+							        constraint4.insets = insets4;
+									JLabel clave= new JLabel("Ingrese su clave");
+									panelClave.add(clave,constraint4);
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											int clav2=Integer.parseInt(tarjeta1.getText());
+											if(clav2==mapa.get(celi).getClave()) {
+												tarjeta1.setText(" ");
+												retiro2 = new Retiro(mapa.get(celi).getSaldo(),600000);
+												if(retiro2.getRetiro()>=0) {
+													retiro1.setText("Retire su dinero");
+													sald=retiro2.getRetiro();
+													clave.setText("Saldo Nuevo: "+sald);
+												}else {
+													retiro1.setText("saldo insuficiente");
+												}
+												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+								}
+							});
 						}
 			        });
 				}else {
