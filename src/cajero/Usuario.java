@@ -13,6 +13,9 @@ public class Usuario {
 	public int getCedula() {
 		return cedula;
 	}
+	public void setSaldo(int saldon) {
+		this.saldo=saldon;
+	}
 	public int getSaldo() {
 		return saldo;
 	}

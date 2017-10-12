@@ -10,7 +10,7 @@ public class Retiro {
 		if(cantidad>=cantidad2) {
 			return cantidad-cantidad2;
 		}else {
-			return cantidad;
+			return -1;
 		}
 		
 	}

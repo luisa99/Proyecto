@@ -23,15 +23,15 @@ import javax.swing.border.Border;
 
 
 public class Componentes extends JFrame{
-	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3,panelCentroret,panelClave;
+	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3,panelCentroret,panelClave,panelClave2;
 	public Usuario usuario1;
-	public String nomi,apeli;
+	public String nomi,apeli,nomi2;
 	public transferencia transferencias;
-	public consulta consultas;
+	
 	public CambioClave cambioClave;
 	public Pagos pagos;
 	public Retiro retiro2;
-	public int clav,sald,celi;
+	public int clav,sald,celi,ncuenta,val;
 	public HashMap<Integer, Usuario> mapa = new HashMap<Integer, Usuario>();
 	public Componentes(String titulo){
 		 super(titulo);
@@ -308,7 +308,7 @@ public class Componentes extends JFrame{
         panelAbajo.add(usuario,constraint3);
         limpiar.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				tarjeta1.setText(" ");
+				tarjeta1.setText("");
 			}
         });
         usuario.addActionListener (new ActionListener(){
@@ -559,6 +559,7 @@ public class Componentes extends JFrame{
 						public void actionPerformed(ActionEvent e){
 							panelCentro2.setVisible(false);
 							panelCentro.setVisible(true);
+							tarjeta1.setText("");
 						}
 			        });
 			        
@@ -566,6 +567,7 @@ public class Componentes extends JFrame{
 						public void actionPerformed(ActionEvent e){
 							panelCentro2.setVisible(false);
 							panelCentro.setVisible(true);
+							tarjeta1.setText("");
 						}
 			        });
 			        boton1.addActionListener (new ActionListener(){
@@ -650,6 +652,7 @@ public class Componentes extends JFrame{
 							        constraint4.insets = insets4;
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
+									tarjeta.setText("Ingrese Clave");
 									cancelar.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											panelClave.setVisible(false);
@@ -669,8 +672,9 @@ public class Componentes extends JFrame{
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),20000);
 												tarjeta1.setText(" ");
 												if(retiro2.getRetiro()>=0) {
-													retiro1.setText("Retire su dinero");
+													retiro1.setText("Descuento exitoso");
 													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
 													clave.setText("Saldo Nuevo: "+sald);
 												}else {
 													retiro1.setText("saldo insuficiente");
@@ -699,6 +703,7 @@ public class Componentes extends JFrame{
 							        constraint4.insets = insets4;
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
+									tarjeta.setText("Ingrese Clave");
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											int clav2=Integer.parseInt(tarjeta1.getText());
@@ -706,8 +711,9 @@ public class Componentes extends JFrame{
 												tarjeta1.setText(" ");
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),100000);
 												if(retiro2.getRetiro()>=0) {
-													retiro1.setText("Retire su dinero");
+													retiro1.setText("Descuento exitoso");
 													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
 													clave.setText("Saldo Nuevo: "+sald);
 												}else {
 													retiro1.setText("saldo insuficiente");
@@ -736,6 +742,7 @@ public class Componentes extends JFrame{
 							        constraint4.insets = insets4;
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
+									tarjeta.setText("Ingrese Clave");
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											int clav2=Integer.parseInt(tarjeta1.getText());
@@ -743,8 +750,9 @@ public class Componentes extends JFrame{
 												tarjeta1.setText(" ");
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),400000);
 												if(retiro2.getRetiro()>=0) {
-													retiro1.setText("Retire su dinero");
+													retiro1.setText("Descuento exitoso");
 													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
 													clave.setText("Saldo Nuevo: "+sald);
 												}else {
 													retiro1.setText("saldo insuficiente");
@@ -773,6 +781,7 @@ public class Componentes extends JFrame{
 							        constraint4.insets = insets4;
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
+									tarjeta.setText("Ingrese Clave");
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											int clav2=Integer.parseInt(tarjeta1.getText());
@@ -780,8 +789,9 @@ public class Componentes extends JFrame{
 												tarjeta1.setText(" ");
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),50000);
 												if(retiro2.getRetiro()>=0) {
-													retiro1.setText("Retire su dinero");
+													retiro1.setText("Descuento exitoso");
 													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
 													clave.setText("Saldo Nuevo: "+sald);
 												}else {
 													retiro1.setText("saldo insuficiente");
@@ -810,6 +820,7 @@ public class Componentes extends JFrame{
 							        constraint4.insets = insets4;
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
+									tarjeta.setText("Ingrese Clave");
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											int clav2=Integer.parseInt(tarjeta1.getText());
@@ -817,8 +828,9 @@ public class Componentes extends JFrame{
 												tarjeta1.setText(" ");
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),200000);
 												if(retiro2.getRetiro()>=0) {
-													retiro1.setText("Retire su dinero");
+													retiro1.setText("Descuento exitoso");
 													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
 													clave.setText("Saldo Nuevo: "+sald);
 												}else {
 													retiro1.setText("saldo insuficiente");
@@ -847,6 +859,7 @@ public class Componentes extends JFrame{
 							        constraint4.insets = insets4;
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
+									tarjeta.setText("Ingrese Clave");
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											int clav2=Integer.parseInt(tarjeta1.getText());
@@ -854,13 +867,140 @@ public class Componentes extends JFrame{
 												tarjeta1.setText(" ");
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),600000);
 												if(retiro2.getRetiro()>=0) {
-													retiro1.setText("Retire su dinero");
+													retiro1.setText("Descuento exitoso");
 													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
 													clave.setText("Saldo Nuevo: "+sald);
 												}else {
 													retiro1.setText("saldo insuficiente");
 												}
 												
+											}else {
+												tarjeta1.setText("dato incorrecto");
+											}
+										}
+									});
+								}
+							});
+						}
+			        });
+			        boton2.addActionListener (new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							panelCentro2.setVisible(false);
+							panelClave = new JPanel( );
+					        conten.add( panelClave, BorderLayout.CENTER );
+							panelClave.setLayout(new GridBagLayout( ));
+							GridBagConstraints constraint4 = new GridBagConstraints( );
+							constraint4.gridx = 0;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        Insets insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel clave= new JLabel("Ingrese su clave");
+							panelClave.add(clave,constraint4);
+							tarjeta1.setText(" ");
+							tarjeta.setText("Ingrese Clave");
+							tarjetaok.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									sald=mapa.get(celi).getSaldo();
+									clave.setText("Saldo : "+sald);
+									retiro1.setText("Consulta exitosa");
+								}
+							});
+						}
+			        });
+			        boton3.addActionListener (new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							panelCentro2.setVisible(false);
+							panelClave2 = new JPanel( );
+					        conten.add( panelClave2, BorderLayout.CENTER );
+							panelClave2.setLayout(new GridBagLayout( ));
+							GridBagConstraints constraint4 = new GridBagConstraints( );
+							constraint4.gridx = 2;
+					        constraint4.gridy = 0;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        Insets insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel datos= new JLabel("Datos ");
+							panelClave2.add(datos,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 1;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel nombre1= new JLabel("Nombre");
+							panelClave2.add(nombre1,constraint4);
+							constraint4.gridx = 1;
+					        constraint4.gridy = 1;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JTextField nombre5 = new JTextField("");
+							panelClave2.add(nombre5,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel numcuenta= new JLabel("No. Cuenta");
+							panelClave2.add(numcuenta,constraint4);
+							constraint4.gridx = 1;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JTextField numcuenta2 = new JTextField("");
+							panelClave2.add(numcuenta2,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 3;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel valor= new JLabel("Valor");
+							panelClave2.add(valor,constraint4);
+							constraint4.gridx = 1;
+					        constraint4.gridy = 3;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JTextField valor2 = new JTextField("");
+							panelClave2.add(valor2,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 4;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JButton aceptar= new JButton("Aceptar");
+							panelClave2.add(aceptar,constraint4);
+							constraint4.gridx = 0;
+					        constraint4.gridy = 5;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel clave= new JLabel("");
+							panelClave2.add(clave,constraint4);
+							aceptar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									clave.setText("Digite su clave");
+									tarjeta.setText("Ingrese Clave");
+									tarjetaok.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											nomi2=((String)nombre5.getText());
+											ncuenta=Integer.parseInt(numcuenta2.getText());
+											val=Integer.parseInt(valor2.getText());
+											int clav3=Integer.parseInt(tarjeta1.getText());
+											if(clav3==mapa.get(celi).getClave()) {
+												tarjeta1.setText(" ");
+												sald=mapa.get(celi).getSaldo();
+												transferencias=new transferencia(nomi2,ncuenta,val,sald);
+												if(transferencias.getSaldo()>=0) {
+													retiro1.setText("Descuento exitoso");
+													sald=retiro2.getRetiro();
+													usuario1.setSaldo(sald);
+												}else {
+													retiro1.setText("Saldo insuficiente");
+												}
+											
 											}else {
 												tarjeta1.setText("dato incorrecto");
 											}
