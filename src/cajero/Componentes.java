@@ -11,8 +11,10 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,16 +22,14 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 
-
-
 public class Componentes extends JFrame{
-	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3,panelCentroret,panelClave,panelClave2;
+	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3,panelCentroret,panelClave,panelClave2,panelClave3,panelClave5;
 	public Usuario usuario1;
-	public String nomi,apeli,nomi2;
+	public String nomi,apeli,nomi2,itemSeleecionado;
 	public transferencia transferencias;
 	
-	public CambioClave cambioClave;
-	public Pagos pagos;
+	
+	public Pagos pagos1;
 	public Retiro retiro2;
 	public int clav,sald,celi,ncuenta,val;
 	public HashMap<Integer, Usuario> mapa = new HashMap<Integer, Usuario>();
@@ -309,6 +309,7 @@ public class Componentes extends JFrame{
         limpiar.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				tarjeta1.setText("");
+				retiro1.setText("");
 			}
         });
         usuario.addActionListener (new ActionListener(){
@@ -428,11 +429,11 @@ public class Componentes extends JFrame{
 		        });
 		        limpiar.addActionListener (new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						cedula2.setText(" ");
-						nombre2.setText(" ");
-						apellido2.setText(" ");
-						clave2.setText(" ");
-						saldo2.setText(" ");
+						cedula2.setText("");
+						nombre2.setText("");
+						apellido2.setText("");
+						clave2.setText("");
+						saldo2.setText("");
 					}
 		        });
 		        salir.addActionListener (new ActionListener(){
@@ -560,14 +561,21 @@ public class Componentes extends JFrame{
 							panelCentro2.setVisible(false);
 							panelCentro.setVisible(true);
 							tarjeta1.setText("");
+							retiro1.setText("");
 						}
 			        });
-			        
+			        limpiar.addActionListener (new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							tarjeta1.setText("");
+							retiro1.setText("");
+						}
+			        });
 			        salir.addActionListener (new ActionListener(){
 						public void actionPerformed(ActionEvent e){
 							panelCentro2.setVisible(false);
 							panelCentro.setVisible(true);
 							tarjeta1.setText("");
+							retiro1.setText("");
 						}
 			        });
 			        boton1.addActionListener (new ActionListener(){
@@ -630,14 +638,25 @@ public class Componentes extends JFrame{
 								public void actionPerformed(ActionEvent e){
 									panelCentroret.setVisible(false);
 									panelCentro2.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
 								}
 							});
 							salir.addActionListener (new ActionListener(){
 								public void actionPerformed(ActionEvent e){
 									panelCentroret.setVisible(false);
 									panelCentro.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
 								}
 							});
+							limpiar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+					        });
 							boton1.addActionListener (new ActionListener(){
 								public void actionPerformed(ActionEvent e){
 									panelCentroret.setVisible(false);
@@ -657,16 +676,50 @@ public class Componentes extends JFrame{
 										public void actionPerformed(ActionEvent e){
 											panelClave.setVisible(false);
 											panelCentroret.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
 										}
 									});
 									salir.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
 											panelClave.setVisible(false);
-											panelCentroret.setVisible(true);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
 										}
 									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentroret.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 											int clav2=Integer.parseInt(tarjeta1.getText());
 											if(clav2==mapa.get(celi).getClave()) {
 												retiro2 = new Retiro(mapa.get(celi).getSaldo(),20000);
@@ -682,6 +735,7 @@ public class Componentes extends JFrame{
 												
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
 										}
 									});
@@ -704,8 +758,54 @@ public class Componentes extends JFrame{
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
 									tarjeta.setText("Ingrese Clave");
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentroret.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 											int clav2=Integer.parseInt(tarjeta1.getText());
 											if(clav2==mapa.get(celi).getClave()) {
 												tarjeta1.setText(" ");
@@ -721,6 +821,7 @@ public class Componentes extends JFrame{
 												
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
 										}
 									});
@@ -743,8 +844,54 @@ public class Componentes extends JFrame{
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
 									tarjeta.setText("Ingrese Clave");
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentroret.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 											int clav2=Integer.parseInt(tarjeta1.getText());
 											if(clav2==mapa.get(celi).getClave()) {
 												tarjeta1.setText(" ");
@@ -760,6 +907,7 @@ public class Componentes extends JFrame{
 												
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
 										}
 									});
@@ -782,8 +930,54 @@ public class Componentes extends JFrame{
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
 									tarjeta.setText("Ingrese Clave");
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentroret.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 											int clav2=Integer.parseInt(tarjeta1.getText());
 											if(clav2==mapa.get(celi).getClave()) {
 												tarjeta1.setText(" ");
@@ -799,6 +993,7 @@ public class Componentes extends JFrame{
 												
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
 										}
 									});
@@ -821,8 +1016,54 @@ public class Componentes extends JFrame{
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
 									tarjeta.setText("Ingrese Clave");
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentroret.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 											int clav2=Integer.parseInt(tarjeta1.getText());
 											if(clav2==mapa.get(celi).getClave()) {
 												tarjeta1.setText(" ");
@@ -838,6 +1079,7 @@ public class Componentes extends JFrame{
 												
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
 										}
 									});
@@ -860,8 +1102,54 @@ public class Componentes extends JFrame{
 									JLabel clave= new JLabel("Ingrese su clave");
 									panelClave.add(clave,constraint4);
 									tarjeta.setText("Ingrese Clave");
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentroret.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentroret.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 											int clav2=Integer.parseInt(tarjeta1.getText());
 											if(clav2==mapa.get(celi).getClave()) {
 												tarjeta1.setText(" ");
@@ -877,6 +1165,7 @@ public class Componentes extends JFrame{
 												
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
 										}
 									});
@@ -887,9 +1176,9 @@ public class Componentes extends JFrame{
 			        boton2.addActionListener (new ActionListener(){
 						public void actionPerformed(ActionEvent e){
 							panelCentro2.setVisible(false);
-							panelClave = new JPanel( );
-					        conten.add( panelClave, BorderLayout.CENTER );
-							panelClave.setLayout(new GridBagLayout( ));
+							panelClave5 = new JPanel( );
+					        conten.add( panelClave5, BorderLayout.CENTER );
+							panelClave5.setLayout(new GridBagLayout( ));
 							GridBagConstraints constraint4 = new GridBagConstraints( );
 							constraint4.gridx = 0;
 					        constraint4.gridy = 2;
@@ -897,11 +1186,57 @@ public class Componentes extends JFrame{
 					        Insets insets4 = new Insets( 5, 10, 5, 10 );
 					        constraint4.insets = insets4;
 							JLabel clave= new JLabel("Ingrese su clave");
-							panelClave.add(clave,constraint4);
-							tarjeta1.setText(" ");
+							panelClave5.add(clave,constraint4);
+							tarjeta1.setText("");
 							tarjeta.setText("Ingrese Clave");
+							cancelar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave5.setVisible(false);
+									panelCentro2.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							salir.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave5.setVisible(false);
+									panelCentro.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							limpiar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+					        });
 							tarjetaok.addActionListener (new ActionListener(){
 								public void actionPerformed(ActionEvent e){
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave5.setVisible(false);
+											panelCentro2.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave5.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									sald=mapa.get(celi).getSaldo();
 									clave.setText("Saldo : "+sald);
 									retiro1.setText("Consulta exitosa");
@@ -915,76 +1250,120 @@ public class Componentes extends JFrame{
 							panelClave2 = new JPanel( );
 					        conten.add( panelClave2, BorderLayout.CENTER );
 							panelClave2.setLayout(new GridBagLayout( ));
-							GridBagConstraints constraint4 = new GridBagConstraints( );
-							constraint4.gridx = 2;
-					        constraint4.gridy = 0;
-					        constraint4.fill = GridBagConstraints.NONE;
-					        Insets insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
-					        JLabel datos= new JLabel("Datos ");
-							panelClave2.add(datos,constraint4);
-							constraint4.gridx = 0;
-					        constraint4.gridy = 1;
-					        constraint4.fill = GridBagConstraints.NONE;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							GridBagConstraints constraint5 = new GridBagConstraints( );
+							constraint5.gridx = 0;
+					        constraint5.gridy = 1;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        Insets insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JLabel nombre1= new JLabel("Nombre");
-							panelClave2.add(nombre1,constraint4);
-							constraint4.gridx = 1;
-					        constraint4.gridy = 1;
-					        constraint4.fill = GridBagConstraints.BOTH;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(nombre1,constraint5);
+							constraint5.gridx = 1;
+					        constraint5.gridy = 1;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JTextField nombre5 = new JTextField("");
-							panelClave2.add(nombre5,constraint4);
-							constraint4.gridx = 0;
-					        constraint4.gridy = 2;
-					        constraint4.fill = GridBagConstraints.NONE;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(nombre5,constraint5);
+							constraint5.gridx = 0;
+					        constraint5.gridy = 2;
+					        constraint5.fill = GridBagConstraints.NONE;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JLabel numcuenta= new JLabel("No. Cuenta");
-							panelClave2.add(numcuenta,constraint4);
-							constraint4.gridx = 1;
-					        constraint4.gridy = 2;
-					        constraint4.fill = GridBagConstraints.BOTH;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(numcuenta,constraint5);
+							constraint5.gridx = 1;
+					        constraint5.gridy = 2;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JTextField numcuenta2 = new JTextField("");
-							panelClave2.add(numcuenta2,constraint4);
-							constraint4.gridx = 0;
-					        constraint4.gridy = 3;
-					        constraint4.fill = GridBagConstraints.NONE;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(numcuenta2,constraint5);
+							constraint5.gridx = 0;
+					        constraint5.gridy = 3;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JLabel valor= new JLabel("Valor");
-							panelClave2.add(valor,constraint4);
-							constraint4.gridx = 1;
-					        constraint4.gridy = 3;
-					        constraint4.fill = GridBagConstraints.BOTH;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(valor,constraint5);
+							constraint5.gridx = 1;
+					        constraint5.gridy = 3;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JTextField valor2 = new JTextField("");
-							panelClave2.add(valor2,constraint4);
-							constraint4.gridx = 0;
-					        constraint4.gridy = 4;
-					        constraint4.fill = GridBagConstraints.NONE;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(valor2,constraint5);
+							constraint5.gridx = 0;
+					        constraint5.gridy = 4;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JButton aceptar= new JButton("Aceptar");
-							panelClave2.add(aceptar,constraint4);
-							constraint4.gridx = 0;
-					        constraint4.gridy = 5;
-					        constraint4.fill = GridBagConstraints.NONE;
-					        insets4 = new Insets( 5, 10, 5, 10 );
-					        constraint4.insets = insets4;
+							panelClave2.add(aceptar,constraint5);
+							constraint5.gridx = 0;
+					        constraint5.gridy = 5;
+					        constraint5.fill = GridBagConstraints.BOTH;
+					        insets5 = new Insets( 5, 10, 5, 10 );
+					        constraint5.insets = insets5;
 					        JLabel clave= new JLabel("");
-							panelClave2.add(clave,constraint4);
+							panelClave2.add(clave,constraint5);
+							cancelar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave2.setVisible(false);
+									panelCentro2.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							salir.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave2.setVisible(false);
+									panelCentro.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							limpiar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									nombre5.setText("");
+									numcuenta2.setText("");
+									valor2.setText("");
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+					        });
 							aceptar.addActionListener (new ActionListener(){
 								public void actionPerformed(ActionEvent e){
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave2.setVisible(false);
+											panelCentro2.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave2.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											nombre5.setText("");
+											numcuenta2.setText("");
+											valor2.setText("");
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
 									clave.setText("Digite su clave");
 									tarjeta.setText("Ingrese Clave");
 									tarjetaok.addActionListener (new ActionListener(){
 										public void actionPerformed(ActionEvent e){
+											
 											nomi2=((String)nombre5.getText());
 											ncuenta=Integer.parseInt(numcuenta2.getText());
 											val=Integer.parseInt(valor2.getText());
@@ -995,7 +1374,7 @@ public class Componentes extends JFrame{
 												transferencias=new transferencia(nomi2,ncuenta,val,sald);
 												if(transferencias.getSaldo()>=0) {
 													retiro1.setText("Descuento exitoso");
-													sald=retiro2.getRetiro();
+													sald=transferencias.getSaldo();
 													usuario1.setSaldo(sald);
 												}else {
 													retiro1.setText("Saldo insuficiente");
@@ -1003,9 +1382,303 @@ public class Componentes extends JFrame{
 											
 											}else {
 												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
+											cancelar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave2.setVisible(false);
+													panelCentro2.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											salir.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													panelClave2.setVisible(false);
+													panelCentro.setVisible(true);
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+											});
+											limpiar.addActionListener (new ActionListener(){
+												public void actionPerformed(ActionEvent e){
+													nombre5.setText("");
+													numcuenta2.setText("");
+													valor2.setText("");
+													tarjeta1.setText("");
+													retiro1.setText("");
+												}
+									        });
 										}
 									});
+								}
+							});
+						}
+			        });
+			        boton4.addActionListener (new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							panelCentro2.setVisible(false);
+							panelClave3 = new JPanel( );
+					        conten.add( panelClave3, BorderLayout.CENTER );
+							panelClave3.setLayout(new GridBagLayout( ));
+							GridBagConstraints constraint4 = new GridBagConstraints( );
+							constraint4.gridx = 0;
+					        constraint4.gridy = 0;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        Insets insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel ref= new JLabel("Referencia");
+					        panelClave3.add(ref,constraint4);
+					        constraint4.gridx = 1;
+					        constraint4.gridy = 0;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JTextField ref1= new JTextField("");
+					        panelClave3.add(ref1,constraint4);
+					        constraint4.gridx = 0;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel valor= new JLabel("Valor a pagar");
+					        panelClave3.add(valor,constraint4);
+					        constraint4.gridx = 1;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JTextField valor2= new JTextField("");
+					        panelClave3.add(valor2,constraint4);
+					        constraint4.gridx = 0;
+					        constraint4.gridy = 4;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JComboBox empresas=new JComboBox();
+					        empresas.setModel(new DefaultComboBoxModel(new String[] {"seleccionar","Codensa","Davivienda","Compensar","EMAAF","Crediflores"}));
+					        empresas.setSelectedIndex(0);
+					        empresas.setBounds(10, 260, 150, 20);
+					        panelClave3.add(empresas,constraint4);
+					        constraint4.gridx = 0;
+					        constraint4.gridy = 6;
+					        constraint4.fill = GridBagConstraints.BOTH;
+					        insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+					        JLabel clave= new JLabel("Digite su clave");
+					        panelClave3.add(clave,constraint4);
+					        cancelar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave3.setVisible(false);
+									panelCentro2.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							salir.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave3.setVisible(false);
+									panelCentro.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							limpiar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									ref1.setText("");
+									valor2.setText("");
+									empresas.setSelectedIndex(0);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+					        });
+					        tarjetaok.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave3.setVisible(false);
+											panelCentro2.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave3.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											ref1.setText("");
+											valor2.setText("");
+											empresas.setSelectedIndex(0);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
+									int ref=Integer.parseInt(ref1.getText());;
+									int valor=Integer.parseInt(valor2.getText());
+									itemSeleecionado = (String)empresas.getSelectedItem();
+									sald=mapa.get(celi).getSaldo();
+									int clav3=Integer.parseInt(tarjeta1.getText());
+									if(clav3==mapa.get(celi).getClave()) {
+										tarjeta1.setText("");
+										if ("Codensa".equals(itemSeleecionado)) {
+											pagos1=new Pagos(ref,valor,"Codensa",sald);
+										}else {
+											if("Davivienda".equals(itemSeleecionado)) {
+												pagos1=new Pagos(ref,valor,"Davivienda",sald);
+											}else {
+												if("Compensar".equals(itemSeleecionado)) {
+													pagos1=new Pagos(ref,valor,"Compensar",sald);
+												}else {
+													if("EMAAF".equals(itemSeleecionado)) {
+														pagos1=new Pagos(ref,valor,"EMAAF",sald);
+													}else {
+														if("Crediflores".equals(itemSeleecionado)) {
+															pagos1=new Pagos(ref,valor,"Crediflores",sald);
+														}
+													}
+												}
+											}
+										}
+										empresas.setSelectedIndex(0);
+										if(pagos1.getSaldo()>=0) {
+											retiro1.setText("Pago exitoso");
+											sald=pagos1.getSaldo();
+											usuario1.setSaldo(sald);
+										}else {
+											retiro1.setText("Saldo Insuficiente");
+										}
+									}else {
+										tarjeta1.setText("dato incorrecto");
+										retiro1.setText("");
+									}
+								}
+					        });
+						}
+			        });
+			        boton5.addActionListener (new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							panelCentro2.setVisible(false);
+							panelClave = new JPanel( );
+					        conten.add( panelClave, BorderLayout.CENTER );
+							panelClave.setLayout(new GridBagLayout( ));
+							GridBagConstraints constraint4 = new GridBagConstraints( );
+							constraint4.gridx = 0;
+					        constraint4.gridy = 2;
+					        constraint4.fill = GridBagConstraints.NONE;
+					        Insets insets4 = new Insets( 5, 10, 5, 10 );
+					        constraint4.insets = insets4;
+							JLabel clave= new JLabel("Ingrese su clave");
+							panelClave.add(clave,constraint4);
+							cancelar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave.setVisible(false);
+									panelCentro2.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							salir.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									panelClave.setVisible(false);
+									panelCentro.setVisible(true);
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+							});
+							limpiar.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									tarjeta1.setText("");
+									retiro1.setText("");
+								}
+					        });
+							tarjeta1.setText("");
+							tarjeta.setText("Ingrese Clave");
+							tarjetaok.addActionListener (new ActionListener(){
+								public void actionPerformed(ActionEvent e){
+									cancelar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro2.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									salir.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											panelClave.setVisible(false);
+											panelCentro.setVisible(true);
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+									});
+									limpiar.addActionListener (new ActionListener(){
+										public void actionPerformed(ActionEvent e){
+											tarjeta1.setText("");
+											retiro1.setText("");
+										}
+							        });
+									int clav3=Integer.parseInt(tarjeta1.getText());
+									if(clav3==mapa.get(celi).getClave()) {
+										tarjeta1.setText("");
+										clave.setText("Ingrese nueva Clave");
+										constraint4.gridx = 1;
+								        constraint4.gridy = 2;
+								        constraint4.fill = GridBagConstraints.NONE;
+								        Insets insets4 = new Insets( 5, 10, 5, 10 );
+								        constraint4.insets = insets4;
+										JTextField clave2= new JTextField("");
+										panelClave.add(clave2,constraint4);
+										constraint4.gridx = 1;
+								        constraint4.gridy = 3;
+								        constraint4.fill = GridBagConstraints.NONE;
+								        insets4 = new Insets( 5, 10, 5, 10 );
+								        constraint4.insets = insets4;
+										JButton clave3= new JButton("Aceptar");
+										panelClave.add(clave3,constraint4);
+										limpiar.addActionListener (new ActionListener(){
+											public void actionPerformed(ActionEvent e){
+												clave2.setText("");
+												tarjeta1.setText("");
+												retiro1.setText("");
+											}
+								        });
+										clave3.addActionListener (new ActionListener(){
+											public void actionPerformed(ActionEvent e){
+												cancelar.addActionListener (new ActionListener(){
+													public void actionPerformed(ActionEvent e){
+														panelClave.setVisible(false);
+														panelCentro2.setVisible(true);
+														tarjeta1.setText("");
+														retiro1.setText("");
+													}
+												});
+												salir.addActionListener (new ActionListener(){
+													public void actionPerformed(ActionEvent e){
+														panelClave.setVisible(false);
+														panelCentro.setVisible(true);
+														tarjeta1.setText("");
+														retiro1.setText("");
+													}
+												});
+												limpiar.addActionListener (new ActionListener(){
+													public void actionPerformed(ActionEvent e){
+														tarjeta1.setText("");
+														retiro1.setText("");
+													}
+										        });
+												retiro1.setText("Cambio exitoso de clave");
+												int clave=Integer.parseInt(clave2.getText());
+												usuario1.setClave(clave);
+											}
+										});
+										
+									}
 								}
 							});
 						}

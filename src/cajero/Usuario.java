@@ -16,6 +16,9 @@ public class Usuario {
 	public void setSaldo(int saldon) {
 		this.saldo=saldon;
 	}
+	public void setClave(int claven) {
+		this.clave=claven;
+	}
 	public int getSaldo() {
 		return saldo;
 	}
