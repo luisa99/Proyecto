@@ -31,7 +31,7 @@ public class Componentes extends JFrame{
 	public transferencia transferencias;
 	public Pagos pagos1;
 	public Retiro retiro2;
-	public int clav,sald,celi,ncuenta,val;
+	public int clav,sald,celi,ncuenta,val,pan,bot;
 	public HashMap<Integer, Usuario> mapa = new HashMap<Integer, Usuario>();
 	
 	public Componentes(String titulo){
@@ -318,6 +318,7 @@ public class Componentes extends JFrame{
         
         usuario.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				pan=3;
 				panelCentro.setVisible(false);
 				panelCentro3 = new JPanel( );
 				conten.add( panelCentro3, BorderLayout.CENTER );
@@ -443,6 +444,7 @@ public class Componentes extends JFrame{
 								mapa.put(celi,usuario1);
 								panelCentro3.setVisible(false);
 								panelCentro.setVisible(true);
+								pan=1;
 							}else {
 								cedula2.setText(" ");
 								nombre2.setText(" ");
@@ -458,20 +460,43 @@ public class Componentes extends JFrame{
 		        
 		        cancelar.addActionListener (new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						JOptionPane.showMessageDialog(null,"Accion Cancelada");
-						panelCentro3.repaint();
-						panelCentro3.setVisible(false);
-						panelCentro.setVisible(true);
+						if(pan==3){
+							JOptionPane.showMessageDialog(null,"Accion Cancelada");
+							panelCentro3.repaint();
+							panelCentro3.setVisible(false);
+							panelCentro.setVisible(true);
+						}else if(pan==2) {
+							panelCentro2.setVisible(false);
+							panelCentro.setVisible(true);
+							tarjeta1.setText("");
+							retiro1.setText("");
+						}else if(pan==4&&bot==1) {
+							panelCentroret.setVisible(false);
+							panelCentro2.setVisible(true);
+							tarjeta1.setText("");
+							retiro1.setText("");
+						}else if(pan==5&&bot==1) {
+							panelClave.setVisible(false);
+							panelCentroret.setVisible(true);
+							tarjeta1.setText("");
+							retiro1.setText("");
+						}
 					}
 		        });
 		        
 		        limpiar.addActionListener (new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						cedula2.setText("");
-						nombre2.setText("");
-						apellido2.setText("");
-						clave2.setText("");
-						saldo2.setText("");
+						if(pan==3) {
+							cedula2.setText("");
+							nombre2.setText("");
+							apellido2.setText("");
+							clave2.setText("");
+							saldo2.setText("");
+						}else if(pan==2||pan==1||pan==4) {
+							tarjeta1.setText("");
+							retiro1.setText("");
+						}
+						
 					}
 		        });
 		        
@@ -559,13 +584,12 @@ public class Componentes extends JFrame{
         
         tarjetaok.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
-				
-					celi=Integer.parseInt(tarjeta1.getText());
+				celi=Integer.parseInt(tarjeta1.getText());
 				
 					if(mapa.containsKey(celi)==true) {
 						panelCentro.setVisible(false);
 						tarjeta1.setText("");
-
+						pan=2;
 						panelCentro2 = new JPanel( );
 				        conten.add( panelCentro2, BorderLayout.CENTER );
 						panelCentro2.setLayout(new GridBagLayout( ));
@@ -618,23 +642,6 @@ public class Componentes extends JFrame{
 				        JLabel transferencia = new JLabel("Transferencias");
 				        panelCentro2.add(transferencia,constraint4);
 				        
-				        cancelar.addActionListener (new ActionListener(){
-							public void actionPerformed(ActionEvent e){
-								panelCentro2.setVisible(false);
-								panelCentro.setVisible(true);
-								tarjeta1.setText("");
-								retiro1.setText("");
-								panelCentro2.repaint();
-							}
-				        });
-				        
-				        limpiar.addActionListener (new ActionListener(){
-							public void actionPerformed(ActionEvent e){
-								tarjeta1.setText("");
-								retiro1.setText("");
-							}
-				        });
-				        
 				        salir.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
 								panelCentro2.setVisible(false);
@@ -646,6 +653,8 @@ public class Componentes extends JFrame{
 				        
 				        boton1.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								bot=1;
+								pan=4;
 								panelCentro2.setVisible(false);
 								panelCentroret = new JPanel( );
 						        conten.add( panelCentroret, BorderLayout.CENTER );
@@ -701,14 +710,6 @@ public class Componentes extends JFrame{
 								JButton boton6= new JButton("OK");
 								panelDerecha.add(boton6,constraint1);
 								
-								cancelar.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										panelCentroret.setVisible(false);
-										panelCentro2.setVisible(true);
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-								});
 								salir.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										panelCentroret.setVisible(false);
@@ -717,15 +718,10 @@ public class Componentes extends JFrame{
 										retiro1.setText("");
 									}
 								});
-								limpiar.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-						        });
+								
 								boton1.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										pan=5;
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -739,14 +735,7 @@ public class Componentes extends JFrame{
 										JLabel clave= new JLabel("Ingrese su clave");
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
-										cancelar.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentroret.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										salir.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												panelClave.setVisible(false);
@@ -1013,6 +1002,7 @@ public class Componentes extends JFrame{
 												retiro1.setText("");
 											}
 										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -1769,7 +1759,8 @@ public class Componentes extends JFrame{
 							}
 				        });
 					}else {
-						tarjeta1.setText("dato incorrecto");
+						tarjeta1.setText("");
+						JOptionPane.showMessageDialog(null,"Tarjeta incorrecta, verifique los datos o registre usuario");
 					}
 				}
 			
