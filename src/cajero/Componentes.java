@@ -26,6 +26,7 @@ import javax.swing.border.Border;
 public class Componentes extends JFrame{
 	public JPanel panelArriba, panelAbajo, panelCentro, panelIzquierda,panelDerecha,panelCentro2,panelCentro3,panelCentroret,panelClave,panelClave2,panelClave3,panelClave5;
 	public Usuario usuario1;
+	int clave11,valor11,ref11;
 	public String nomi,apeli,nomi2,itemSeleecionado;
 	public transferencia transferencias;
 	public Pagos pagos1;
@@ -433,11 +434,11 @@ public class Componentes extends JFrame{
 						}finally {
 							if(mapa.containsKey(celi)==false){
 								JOptionPane.showMessageDialog(null, "Usuario registrado");
-								cedula2.setText(" ");
-								nombre2.setText(" ");
-								apellido2.setText(" ");
-								clave2.setText(" ");
-								saldo2.setText(" ");
+								cedula2.setText("");
+								nombre2.setText("");
+								apellido2.setText("");
+								clave2.setText("");
+								saldo2.setText("");
 								usuario1=new Usuario(nomi,apeli,sald,clav);
 								mapa.put(celi,usuario1);
 								panelCentro3.setVisible(false);
@@ -558,15 +559,13 @@ public class Componentes extends JFrame{
         
         tarjetaok.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
-				try{
+				
 					celi=Integer.parseInt(tarjeta1.getText());
-				}catch(Exception asd) {
-					JOptionPane.showMessageDialog(null, "Busqueda erronea, verifique datos");
-				}finally {
+				
 					if(mapa.containsKey(celi)==true) {
 						panelCentro.setVisible(false);
 						tarjeta1.setText("");
-						
+
 						panelCentro2 = new JPanel( );
 				        conten.add( panelCentro2, BorderLayout.CENTER );
 						panelCentro2.setLayout(new GridBagLayout( ));
@@ -701,6 +700,7 @@ public class Componentes extends JFrame{
 						        constraint1.insets = insets4;
 								JButton boton6= new JButton("OK");
 								panelDerecha.add(boton6,constraint1);
+								
 								cancelar.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										panelCentroret.setVisible(false);
@@ -1281,6 +1281,7 @@ public class Componentes extends JFrame{
 						        });
 								tarjetaok.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										tarjeta1.setText("");
 										cancelar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												panelClave5.setVisible(false);
@@ -1360,7 +1361,7 @@ public class Componentes extends JFrame{
 						        constraint5.insets = insets5;
 						        JTextField valor2 = new JTextField("");
 								panelClave2.add(valor2,constraint5);
-								constraint5.gridx = 0;
+								constraint5.gridx = 1;
 						        constraint5.gridy = 4;
 						        constraint5.fill = GridBagConstraints.BOTH;
 						        insets5 = new Insets( 5, 10, 5, 10 );
@@ -1430,17 +1431,21 @@ public class Componentes extends JFrame{
 										tarjeta.setText("Ingrese Clave");
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
+												try {
+													nomi2=((String)nombre5.getText());
+													ncuenta=Integer.parseInt(numcuenta2.getText());
+													val=Integer.parseInt(valor2.getText());
+												}catch(Exception eq) {
+													JOptionPane.showMessageDialog(null, "Error , verifique sus datos");
+												}finally {
 												
-												nomi2=((String)nombre5.getText());
-												ncuenta=Integer.parseInt(numcuenta2.getText());
-												val=Integer.parseInt(valor2.getText());
 												int clav3=Integer.parseInt(tarjeta1.getText());
 												if(clav3==mapa.get(celi).getClave()) {
 													tarjeta1.setText(" ");
 													sald=mapa.get(celi).getSaldo();
 													transferencias=new transferencia(nomi2,ncuenta,val,sald);
 													if(transferencias.getSaldo()>=0) {
-														retiro1.setText("Descuento exitoso");
+														retiro1.setText("Transferencia exitosa");
 														sald=transferencias.getSaldo();
 														usuario1.setSaldo(sald);
 													}else {
@@ -1476,6 +1481,7 @@ public class Componentes extends JFrame{
 														retiro1.setText("");
 													}
 										        });
+											}
 											}
 										});
 									}
@@ -1517,7 +1523,7 @@ public class Componentes extends JFrame{
 						        constraint4.insets = insets4;
 						        JTextField valor2= new JTextField("");
 						        panelClave3.add(valor2,constraint4);
-						        constraint4.gridx = 0;
+						        constraint4.gridx = 1;
 						        constraint4.gridy = 4;
 						        constraint4.fill = GridBagConstraints.BOTH;
 						        insets4 = new Insets( 5, 10, 5, 10 );
@@ -1586,43 +1592,50 @@ public class Componentes extends JFrame{
 												retiro1.setText("");
 											}
 								        });
-										int ref=Integer.parseInt(ref1.getText());;
-										int valor=Integer.parseInt(valor2.getText());
-										itemSeleecionado = (String)empresas.getSelectedItem();
-										sald=mapa.get(celi).getSaldo();
-										int clav3=Integer.parseInt(tarjeta1.getText());
-										if(clav3==mapa.get(celi).getClave()) {
-											tarjeta1.setText("");
-											if ("Codensa".equals(itemSeleecionado)) {
-												pagos1=new Pagos(ref,valor,"Codensa",sald);
-											}else {
-												if("Davivienda".equals(itemSeleecionado)) {
-													pagos1=new Pagos(ref,valor,"Davivienda",sald);
+										try {
+
+											ref11=Integer.parseInt(ref1.getText());;
+										    valor11=Integer.parseInt(valor2.getText());
+										}catch(Exception as){
+											JOptionPane.showMessageDialog(null, "Error , verifique sus datos");
+										}finally {
+										
+											itemSeleecionado = (String)empresas.getSelectedItem();
+											sald=mapa.get(celi).getSaldo();
+											int clav3=Integer.parseInt(tarjeta1.getText());
+											if(clav3==mapa.get(celi).getClave()) {
+												tarjeta1.setText("");
+												if ("Codensa".equals(itemSeleecionado)) {
+													pagos1=new Pagos(ref11,valor11,"Codensa",sald);
 												}else {
-													if("Compensar".equals(itemSeleecionado)) {
-														pagos1=new Pagos(ref,valor,"Compensar",sald);
+													if("Davivienda".equals(itemSeleecionado)) {
+														pagos1=new Pagos(ref11,valor11,"Davivienda",sald);
 													}else {
-														if("EMAAF".equals(itemSeleecionado)) {
-															pagos1=new Pagos(ref,valor,"EMAAF",sald);
+														if("Compensar".equals(itemSeleecionado)) {
+															pagos1=new Pagos(ref11,valor11,"Compensar",sald);
 														}else {
-															if("Crediflores".equals(itemSeleecionado)) {
-																pagos1=new Pagos(ref,valor,"Crediflores",sald);
+															if("EMAAF".equals(itemSeleecionado)) {
+																pagos1=new Pagos(ref11,valor11,"EMAAF",sald);
+															}else {
+																if("Crediflores".equals(itemSeleecionado)) {
+																	pagos1=new Pagos(ref11,valor11,"Crediflores",sald);
+																}
 															}
 														}
 													}
 												}
-											}
-											empresas.setSelectedIndex(0);
-											if(pagos1.getSaldo()>=0) {
-												retiro1.setText("Pago exitoso");
-												sald=pagos1.getSaldo();
-												usuario1.setSaldo(sald);
+												empresas.setSelectedIndex(0);
+												if(pagos1.getSaldo()>=0) {
+													retiro1.setText("Pago exitoso");
+													sald=pagos1.getSaldo();
+													usuario1.setSaldo(sald);
+												}else {
+													retiro1.setText("Saldo Insuficiente");
+												}
 											}else {
-												retiro1.setText("Saldo Insuficiente");
+												tarjeta1.setText("dato incorrecto");
+												retiro1.setText("");
 											}
-										}else {
-											tarjeta1.setText("dato incorrecto");
-											retiro1.setText("");
 										}
 									}
 						        });
@@ -1696,7 +1709,7 @@ public class Componentes extends JFrame{
 											clave.setText("Ingrese nueva Clave");
 											constraint4.gridx = 1;
 									        constraint4.gridy = 2;
-									        constraint4.fill = GridBagConstraints.NONE;
+									        constraint4.fill = GridBagConstraints.BOTH;
 									        Insets insets4 = new Insets( 5, 10, 5, 10 );
 									        constraint4.insets = insets4;
 											JTextField clave2= new JTextField("");
@@ -1739,9 +1752,14 @@ public class Componentes extends JFrame{
 															retiro1.setText("");
 														}
 											        });
-													retiro1.setText("Cambio exitoso de clave");
-													int clave=Integer.parseInt(clave2.getText());
-													usuario1.setClave(clave);
+													try {
+														clave11=Integer.parseInt(clave2.getText());
+													}catch(Exception as){
+														JOptionPane.showMessageDialog(null, "Error , verifique sus datos");
+													}finally {
+														usuario1.setClave(clave11);
+														retiro1.setText("Cambio exitoso de clave");
+													}
 												}
 											});
 											
@@ -1754,7 +1772,7 @@ public class Componentes extends JFrame{
 						tarjeta1.setText("dato incorrecto");
 					}
 				}
-			}
+			
         });	
 	}
 }
