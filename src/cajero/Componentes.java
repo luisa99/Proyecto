@@ -27,8 +27,6 @@ public class Componentes extends JFrame{
 	public Usuario usuario1;
 	public String nomi,apeli,nomi2,itemSeleecionado;
 	public transferencia transferencias;
-	
-	
 	public Pagos pagos1;
 	public Retiro retiro2;
 	public int clav,sald,celi,ncuenta,val;
@@ -1293,7 +1291,7 @@ public class Componentes extends JFrame{
 					        constraint5.insets = insets5;
 					        JTextField valor2 = new JTextField("");
 							panelClave2.add(valor2,constraint5);
-							constraint5.gridx = 0;
+							constraint5.gridx = 1;
 					        constraint5.gridy = 4;
 					        constraint5.fill = GridBagConstraints.BOTH;
 					        insets5 = new Insets( 5, 10, 5, 10 );
@@ -1450,7 +1448,7 @@ public class Componentes extends JFrame{
 					        constraint4.insets = insets4;
 					        JTextField valor2= new JTextField("");
 					        panelClave3.add(valor2,constraint4);
-					        constraint4.gridx = 0;
+					        constraint4.gridx = 1;
 					        constraint4.gridy = 4;
 					        constraint4.fill = GridBagConstraints.BOTH;
 					        insets4 = new Insets( 5, 10, 5, 10 );
@@ -1460,7 +1458,7 @@ public class Componentes extends JFrame{
 					        empresas.setSelectedIndex(0);
 					        empresas.setBounds(10, 260, 150, 20);
 					        panelClave3.add(empresas,constraint4);
-					        constraint4.gridx = 0;
+					        constraint4.gridx = 1;
 					        constraint4.gridy = 6;
 					        constraint4.fill = GridBagConstraints.BOTH;
 					        insets4 = new Insets( 5, 10, 5, 10 );
@@ -1629,7 +1627,7 @@ public class Componentes extends JFrame{
 										clave.setText("Ingrese nueva Clave");
 										constraint4.gridx = 1;
 								        constraint4.gridy = 2;
-								        constraint4.fill = GridBagConstraints.NONE;
+								        constraint4.fill = GridBagConstraints.BOTH;
 								        Insets insets4 = new Insets( 5, 10, 5, 10 );
 								        constraint4.insets = insets4;
 										JTextField clave2= new JTextField("");
