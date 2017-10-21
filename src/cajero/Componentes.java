@@ -816,6 +816,7 @@ public class Componentes extends JFrame{
 								
 								boton1.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										pan=5;
 										bot=1;
 										panelCentroret.setVisible(false);
@@ -876,6 +877,7 @@ public class Componentes extends JFrame{
 								});
 								boton2.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										pan=5;
 										bot=1;
 										panelCentroret.setVisible(false);
@@ -933,9 +935,12 @@ public class Componentes extends JFrame{
 										
 										
 									}
+									}	
+									
 								});
 								boton3.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										pan=5;
 										bot=1;
 										panelCentroret.setVisible(false);
@@ -995,6 +1000,7 @@ public class Componentes extends JFrame{
 								});
 								boton4.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										pan=5;
 										bot=1;
 										panelCentroret.setVisible(false);
@@ -1063,6 +1069,7 @@ public class Componentes extends JFrame{
 								});
 								boton5.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										pan=5;
 										bot=1;
 										panelCentroret.setVisible(false);
@@ -1123,6 +1130,7 @@ public class Componentes extends JFrame{
 								});
 								boton6.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										pan=5;
 										bot=1;
 										panelCentroret.setVisible(false);
@@ -1182,8 +1190,10 @@ public class Componentes extends JFrame{
 								});
 							}
 				        });
+				        
 				        boton2.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								pan=4;
 								bot=2;
 								panelCentro2.setVisible(false);
@@ -1231,6 +1241,7 @@ public class Componentes extends JFrame{
 				        });
 				        boton3.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								pan=4;
 								bot=3;
 								panelCentro2.setVisible(false);
@@ -1370,6 +1381,7 @@ public class Componentes extends JFrame{
 				        });
 				        boton4.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								pan=4;
 								bot=4;
 								panelCentro2.setVisible(false);
@@ -1498,6 +1510,7 @@ public class Componentes extends JFrame{
 				        });
 				        boton5.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								pan=4;
 								bot=5;
 								panelCentro2.setVisible(false);
