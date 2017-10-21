@@ -482,7 +482,6 @@ public class Componentes extends JFrame{
         salir.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(pan==3){
-					
 					panelCentro3.repaint();
 					panelCentro3.setVisible(false);
 					panelCentro.setVisible(true);
@@ -750,9 +749,7 @@ public class Componentes extends JFrame{
 				        constraint4.insets = insets4;
 				        JLabel transferencia = new JLabel("Transferencias");
 				        panelCentro2.add(transferencia,constraint4);
-				        
-				        
-				        
+				       
 				        boton1.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
 								bot=1;
@@ -812,8 +809,6 @@ public class Componentes extends JFrame{
 								JButton boton6= new JButton("OK");
 								panelDerecha.add(boton6,constraint1);
 								
-								
-								
 								boton1.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										if(pan==4&&bot==1) {
@@ -832,8 +827,7 @@ public class Componentes extends JFrame{
 										JLabel clave= new JLabel("Ingrese su clave");
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
-										
-										
+							
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -843,7 +837,6 @@ public class Componentes extends JFrame{
 								        });
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
-												
 												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
@@ -871,8 +864,7 @@ public class Componentes extends JFrame{
 												}
 											}
 										});
-										
-										
+										}
 									}
 								});
 								boton2.addActionListener (new ActionListener(){
@@ -893,7 +885,6 @@ public class Componentes extends JFrame{
 										JLabel clave= new JLabel("Ingrese su clave");
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
-										
 										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
@@ -995,7 +986,7 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										
+										}
 									}
 								});
 								boton4.addActionListener (new ActionListener(){
@@ -1064,7 +1055,7 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										
+										}
 									}
 								});
 								boton5.addActionListener (new ActionListener(){
@@ -1125,7 +1116,7 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										
+										}
 									}
 								});
 								boton6.addActionListener (new ActionListener(){
@@ -1186,8 +1177,10 @@ public class Componentes extends JFrame{
 												}
 											}
 										});
+										}
 									}
 								});
+								
 							}
 				        });
 				        
@@ -1237,6 +1230,7 @@ public class Componentes extends JFrame{
 										retiro1.setText("Consulta exitosa");
 									}
 								});
+								}
 							}
 				        });
 				        boton3.addActionListener (new ActionListener(){
@@ -1377,6 +1371,7 @@ public class Componentes extends JFrame{
 										});
 									}
 								});
+								}
 							}
 				        });
 				        boton4.addActionListener (new ActionListener(){
@@ -1506,6 +1501,7 @@ public class Componentes extends JFrame{
 										}
 									}
 						        });
+								}
 							}
 				        });
 				        boton5.addActionListener (new ActionListener(){
@@ -1596,6 +1592,7 @@ public class Componentes extends JFrame{
 										}
 									}
 								});
+								}
 							}
 				        });
 					}else {
