@@ -462,27 +462,91 @@ public class Componentes extends JFrame{
 		        
 		        limpiar.addActionListener (new ActionListener(){
 					public void actionPerformed(ActionEvent e){
-						if(pan==3) {
+						
 							cedula2.setText("");
 							nombre2.setText("");
 							apellido2.setText("");
 							clave2.setText("");
 							saldo2.setText("");
-						}else if(pan==2||pan==1||pan==4) {
+						
 							tarjeta1.setText("");
 							retiro1.setText("");
-						}
+						
 						
 					}
 		        });
 		        
-		        salir.addActionListener (new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						panelCentro3.repaint();
-						panelCentro3.setVisible(false);
-						panelCentro.setVisible(true);
-					}
-		        });
+		        
+			}
+        });
+        salir.addActionListener (new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(pan==3){
+					
+					panelCentro3.repaint();
+					panelCentro3.setVisible(false);
+					panelCentro.setVisible(true);
+				}else if(pan==2) {
+					panelCentro2.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==4&&bot==1) {
+					panelCentroret.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==5&&bot==1) {
+					panelClave.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==4&&bot==2) {
+					panelClave5.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==4&&bot==3) {
+					panelClave2.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==4&&bot==4) {
+					panelClave3.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==4&&bot==5) {
+					panelClave.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==6&&bot==1) {
+					panelClave5.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==6&&bot==2) {
+					panelClave2.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==6&&bot==3) {
+					panelClave3.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==6&&bot==4) {
+					panelClave.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}else if(pan==6&&bot==5) {
+					panelClave.setVisible(false);
+					panelCentro.setVisible(true);
+					tarjeta1.setText("");
+					retiro1.setText("");
+				}
 			}
         });
         cancelar.addActionListener (new ActionListener(){
@@ -630,7 +694,8 @@ public class Componentes extends JFrame{
         tarjetaok.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
 				celi=Integer.parseInt(tarjeta1.getText());
-				if(mapa.containsKey(celi)==true) {
+				
+					if(mapa.containsKey(celi)==true) {
 						panelCentro.setVisible(false);
 						tarjeta1.setText("");
 						pan=2;
@@ -686,18 +751,10 @@ public class Componentes extends JFrame{
 				        JLabel transferencia = new JLabel("Transferencias");
 				        panelCentro2.add(transferencia,constraint4);
 				        
-				        salir.addActionListener (new ActionListener(){
-							public void actionPerformed(ActionEvent e){
-								panelCentro2.setVisible(false);
-								panelCentro.setVisible(true);
-								tarjeta1.setText("");
-								retiro1.setText("");
-							}
-				        });
+				        
 				        
 				        boton1.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
-								if(pan==2) {
 								bot=1;
 								pan=4;
 								panelCentro2.setVisible(false);
@@ -755,14 +812,7 @@ public class Componentes extends JFrame{
 								JButton boton6= new JButton("OK");
 								panelDerecha.add(boton6,constraint1);
 								
-								salir.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										panelCentroret.setVisible(false);
-										panelCentro.setVisible(true);
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-								});
+								
 								
 								boton1.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
@@ -782,14 +832,7 @@ public class Componentes extends JFrame{
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
 										
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -800,14 +843,7 @@ public class Componentes extends JFrame{
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
-												salir.addActionListener (new ActionListener(){
-													public void actionPerformed(ActionEvent e){
-														panelClave.setVisible(false);
-														panelCentro.setVisible(true);
-														tarjeta1.setText("");
-														retiro1.setText("");
-													}
-												});
+												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
 														
@@ -829,13 +865,12 @@ public class Componentes extends JFrame{
 													}
 													
 												}else {
-													tarjeta1.setText("Dato incorrecto");
+													tarjeta1.setText("dato incorrecto");
 													retiro1.setText("");
-													tarjeta1.setText("");
 												}
 											}
 										});
-										}	
+										
 										
 									}
 								});
@@ -857,14 +892,7 @@ public class Componentes extends JFrame{
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
 										
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -875,14 +903,7 @@ public class Componentes extends JFrame{
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
-												salir.addActionListener (new ActionListener(){
-													public void actionPerformed(ActionEvent e){
-														panelClave.setVisible(false);
-														panelCentro.setVisible(true);
-														tarjeta1.setText("");
-														retiro1.setText("");
-													}
-												});
+												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
 														
@@ -900,18 +921,17 @@ public class Componentes extends JFrame{
 														usuario1.setSaldo(sald);
 														clave.setText("Saldo Nuevo: "+sald);
 													}else {
-														retiro1.setText("Saldo insuficiente");
+														retiro1.setText("saldo insuficiente");
 													}
 													
 												}else {
-													tarjeta1.setText("Dato incorrecto");
+													tarjeta1.setText("dato incorrecto");
 													retiro1.setText("");
-													tarjeta1.setText("");
 												}
 											}
 										});
-									}
-									
+										
+										
 									}
 								});
 								boton3.addActionListener (new ActionListener(){
@@ -932,14 +952,6 @@ public class Componentes extends JFrame{
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
 										
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -950,14 +962,7 @@ public class Componentes extends JFrame{
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
-												salir.addActionListener (new ActionListener(){
-													public void actionPerformed(ActionEvent e){
-														panelClave.setVisible(false);
-														panelCentro.setVisible(true);
-														tarjeta1.setText("");
-														retiro1.setText("");
-													}
-												});
+												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
 														
@@ -985,7 +990,7 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										}
+										
 									}
 								});
 								boton4.addActionListener (new ActionListener(){
@@ -1006,14 +1011,7 @@ public class Componentes extends JFrame{
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
 										
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
@@ -1060,7 +1058,7 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										}	
+										
 									}
 								});
 								boton5.addActionListener (new ActionListener(){
@@ -1081,14 +1079,7 @@ public class Componentes extends JFrame{
 										panelClave.add(clave,constraint4);
 										tarjeta.setText("Ingrese Clave");
 										
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -1099,14 +1090,7 @@ public class Componentes extends JFrame{
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
-												salir.addActionListener (new ActionListener(){
-													public void actionPerformed(ActionEvent e){
-														panelClave.setVisible(false);
-														panelCentro.setVisible(true);
-														tarjeta1.setText("");
-														retiro1.setText("");
-													}
-												});
+												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
 														
@@ -1133,7 +1117,8 @@ public class Componentes extends JFrame{
 												}
 											}
 										});
-										}
+										
+										
 									}
 								});
 								boton6.addActionListener (new ActionListener(){
@@ -1155,14 +1140,7 @@ public class Componentes extends JFrame{
 										tarjeta.setText("Ingrese Clave");
 
 
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -1173,14 +1151,7 @@ public class Componentes extends JFrame{
 										tarjetaok.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
-												salir.addActionListener (new ActionListener(){
-													public void actionPerformed(ActionEvent e){
-														panelClave.setVisible(false);
-														panelCentro.setVisible(true);
-														tarjeta1.setText("");
-														retiro1.setText("");
-													}
-												});
+												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
 														
@@ -1198,23 +1169,17 @@ public class Componentes extends JFrame{
 														usuario1.setSaldo(sald);
 														clave.setText("Saldo Nuevo: "+sald);
 													}else {
-														retiro1.setText("Saldo insuficiente");
+														retiro1.setText("saldo insuficiente");
 													}
 													
 												}else {
-													tarjeta1.setText("Dato incorrecto");
+													tarjeta1.setText("dato incorrecto");
 													retiro1.setText("");
-													tarjeta1.setText("");
 												}
 											}
 										});
-								
-										}
-										
-									}	
-										
+									}
 								});
-								}
 							}
 				        });
 				        boton2.addActionListener (new ActionListener(){
@@ -1236,14 +1201,7 @@ public class Componentes extends JFrame{
 								tarjeta1.setText("");
 								tarjeta.setText("Ingrese Clave");
 								
-								salir.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										panelClave5.setVisible(false);
-										panelCentro.setVisible(true);
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-								});
+								
 								limpiar.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										
@@ -1256,14 +1214,7 @@ public class Componentes extends JFrame{
 										tarjeta1.setText("");
 										pan=6;
 										bot=1;
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave5.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												
@@ -1276,7 +1227,6 @@ public class Componentes extends JFrame{
 										retiro1.setText("Consulta exitosa");
 									}
 								});
-								}
 							}
 				        });
 				        boton3.addActionListener (new ActionListener(){
@@ -1345,14 +1295,7 @@ public class Componentes extends JFrame{
 						        JLabel clave= new JLabel("");
 								panelClave2.add(clave,constraint5);
 								
-								salir.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										panelClave2.setVisible(false);
-										panelCentro.setVisible(true);
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-								});
+								
 								limpiar.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										nombre5.setText("");
@@ -1366,14 +1309,7 @@ public class Componentes extends JFrame{
 									public void actionPerformed(ActionEvent e){
 										pan=6;
 										bot=2;
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave2.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												nombre5.setText("");
@@ -1415,14 +1351,7 @@ public class Componentes extends JFrame{
 													retiro1.setText("");
 												}
 												
-												salir.addActionListener (new ActionListener(){
-													public void actionPerformed(ActionEvent e){
-														panelClave2.setVisible(false);
-														panelCentro.setVisible(true);
-														tarjeta1.setText("");
-														retiro1.setText("");
-													}
-												});
+												
 												limpiar.addActionListener (new ActionListener(){
 													public void actionPerformed(ActionEvent e){
 														nombre5.setText("");
@@ -1437,7 +1366,6 @@ public class Componentes extends JFrame{
 										});
 									}
 								});
-								}
 							}
 				        });
 				        boton4.addActionListener (new ActionListener(){
@@ -1495,14 +1423,7 @@ public class Componentes extends JFrame{
 						        JLabel clave= new JLabel("Digite su clave");
 						        panelClave3.add(clave,constraint4);
 						        
-								salir.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										panelClave3.setVisible(false);
-										panelCentro.setVisible(true);
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-								});
+								
 								limpiar.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										ref1.setText("");
@@ -1516,14 +1437,7 @@ public class Componentes extends JFrame{
 									public void actionPerformed(ActionEvent e){
 										pan=6;
 										bot=3;
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave3.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												ref1.setText("");
@@ -1580,7 +1494,6 @@ public class Componentes extends JFrame{
 										}
 									}
 						        });
-								}
 							}
 				        });
 				        boton5.addActionListener (new ActionListener(){
@@ -1600,14 +1513,7 @@ public class Componentes extends JFrame{
 								JLabel clave= new JLabel("Ingrese su clave");
 								panelClave.add(clave,constraint4);
 								
-								salir.addActionListener (new ActionListener(){
-									public void actionPerformed(ActionEvent e){
-										panelClave.setVisible(false);
-										panelCentro.setVisible(true);
-										tarjeta1.setText("");
-										retiro1.setText("");
-									}
-								});
+								
 								limpiar.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
 										tarjeta1.setText("");
@@ -1618,16 +1524,9 @@ public class Componentes extends JFrame{
 								tarjeta.setText("Ingrese Clave");
 								tarjetaok.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
-									pan=6;
-									bot=4;
-										salir.addActionListener (new ActionListener(){
-											public void actionPerformed(ActionEvent e){
-												panelClave.setVisible(false);
-												panelCentro.setVisible(true);
-												tarjeta1.setText("");
-												retiro1.setText("");
-											}
-										});
+										pan=6;
+										bot=4;
+										
 										limpiar.addActionListener (new ActionListener(){
 											public void actionPerformed(ActionEvent e){
 												tarjeta1.setText("");
@@ -1663,14 +1562,7 @@ public class Componentes extends JFrame{
 												public void actionPerformed(ActionEvent e){
 													pan=6;
 													bot=5;
-													salir.addActionListener (new ActionListener(){
-														public void actionPerformed(ActionEvent e){
-															panelClave.setVisible(false);
-															panelCentro.setVisible(true);
-															tarjeta1.setText("");
-															retiro1.setText("");
-														}
-													});
+													
 													limpiar.addActionListener (new ActionListener(){
 														public void actionPerformed(ActionEvent e){
 															tarjeta1.setText("");
@@ -1691,7 +1583,6 @@ public class Componentes extends JFrame{
 										}
 									}
 								});
-								}
 							}
 				        });
 					}else {
