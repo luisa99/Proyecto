@@ -432,6 +432,7 @@ public class Componentes extends JFrame{
 							sald=Integer.parseInt(saldo2.getText());
 						}catch(Exception as) {
 							JOptionPane.showMessageDialog(null, "Error al agregar usuario, verifique sus datos");
+							
 						}finally {
 							if(mapa.containsKey(celi)==false){
 								JOptionPane.showMessageDialog(null, "Usuario registrado");
@@ -485,11 +486,13 @@ public class Componentes extends JFrame{
 					panelCentro3.repaint();
 					panelCentro3.setVisible(false);
 					panelCentro.setVisible(true);
+					
 				}else if(pan==2) {
 					panelCentro2.setVisible(false);
 					panelCentro.setVisible(true);
 					tarjeta1.setText("");
 					retiro1.setText("");
+					
 				}else if(pan==4&&bot==1) {
 					panelCentroret.setVisible(false);
 					panelCentro.setVisible(true);
@@ -546,6 +549,7 @@ public class Componentes extends JFrame{
 					tarjeta1.setText("");
 					retiro1.setText("");
 				}
+				
 			}
         });
         cancelar.addActionListener (new ActionListener(){
