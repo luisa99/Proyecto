@@ -984,9 +984,9 @@ public class Componentes extends JFrame{
 									});
 									
 									
-								}
+								}else {
 								
-							if(pan==2) {
+							
 								pan=4;
 								bot=2;
 								panelCentro2.setVisible(false);
@@ -1090,8 +1090,8 @@ public class Componentes extends JFrame{
 										}
 									});
 									
-									}
-								if(pan==2) {
+									}else {
+								
 								pan=4;
 								bot=3;
 								panelCentro2.setVisible(false);
@@ -1297,7 +1297,7 @@ public class Componentes extends JFrame{
 									});
 									
 									}
-								if(pan==2) {
+								else{
 								pan=4;
 								bot=4;
 								panelCentro2.setVisible(false);
@@ -1484,7 +1484,7 @@ public class Componentes extends JFrame{
 									});
 									
 									}
-								if(pan==2) {
+								else {
 								pan=4;
 								bot=5;
 								panelCentro2.setVisible(false);
