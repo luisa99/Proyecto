@@ -585,8 +585,7 @@ public class Componentes extends JFrame{
         tarjetaok.addActionListener (new ActionListener(){
 			public void actionPerformed(ActionEvent e){	
 				celi=Integer.parseInt(tarjeta1.getText());
-				
-					if(mapa.containsKey(celi)==true) {
+				if(mapa.containsKey(celi)==true) {
 						panelCentro.setVisible(false);
 						tarjeta1.setText("");
 						pan=2;
@@ -653,6 +652,7 @@ public class Componentes extends JFrame{
 				        
 				        boton1.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								bot=1;
 								pan=4;
 								panelCentro2.setVisible(false);
@@ -721,7 +721,7 @@ public class Componentes extends JFrame{
 								
 								boton1.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
-										pan=5;
+										if(pan==4&&bot==1) {
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -790,17 +790,19 @@ public class Componentes extends JFrame{
 													}
 													
 												}else {
-													tarjeta1.setText("dato incorrecto");
+													tarjeta1.setText("Dato incorrecto");
 													retiro1.setText("");
+													tarjeta1.setText("");
 												}
 											}
 										});
-										
+										}	
 										
 									}
 								});
 								boton2.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -872,21 +874,23 @@ public class Componentes extends JFrame{
 														usuario1.setSaldo(sald);
 														clave.setText("Saldo Nuevo: "+sald);
 													}else {
-														retiro1.setText("saldo insuficiente");
+														retiro1.setText("Saldo insuficiente");
 													}
 													
 												}else {
-													tarjeta1.setText("dato incorrecto");
+													tarjeta1.setText("Dato incorrecto");
 													retiro1.setText("");
+													tarjeta1.setText("");
 												}
 											}
 										});
-										
-										
+									}
+									
 									}
 								});
 								boton3.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -968,11 +972,12 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										
+										}
 									}
 								});
 								boton4.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -1055,11 +1060,12 @@ public class Componentes extends JFrame{
 											}
 										});
 										
-										
+										}	
 									}
 								});
 								boton5.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -1140,12 +1146,12 @@ public class Componentes extends JFrame{
 												}
 											}
 										});
-										
-										
+										}
 									}
 								});
 								boton6.addActionListener (new ActionListener(){
 									public void actionPerformed(ActionEvent e){
+										if(pan==4&&bot==1) {
 										panelCentroret.setVisible(false);
 										panelClave = new JPanel( );
 								        conten.add( panelClave, BorderLayout.CENTER );
@@ -1217,21 +1223,28 @@ public class Componentes extends JFrame{
 														usuario1.setSaldo(sald);
 														clave.setText("Saldo Nuevo: "+sald);
 													}else {
-														retiro1.setText("saldo insuficiente");
+														retiro1.setText("Saldo insuficiente");
 													}
 													
 												}else {
-													tarjeta1.setText("dato incorrecto");
+													tarjeta1.setText("Dato incorrecto");
 													retiro1.setText("");
+													tarjeta1.setText("");
 												}
 											}
 										});
-									}
+								
+										}
+										
+									}	
+										
 								});
+								}
 							}
 				        });
 				        boton2.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								panelCentro2.setVisible(false);
 								panelClave5 = new JPanel( );
 						        conten.add( panelClave5, BorderLayout.CENTER );
@@ -1300,10 +1313,12 @@ public class Componentes extends JFrame{
 										retiro1.setText("Consulta exitosa");
 									}
 								});
+								}
 							}
 				        });
 				        boton3.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								panelCentro2.setVisible(false);
 								panelClave2 = new JPanel( );
 						        conten.add( panelClave2, BorderLayout.CENTER );
@@ -1476,10 +1491,12 @@ public class Componentes extends JFrame{
 										});
 									}
 								});
+								}
 							}
 				        });
 				        boton4.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								panelCentro2.setVisible(false);
 								panelClave3 = new JPanel( );
 						        conten.add( panelClave3, BorderLayout.CENTER );
@@ -1629,10 +1646,12 @@ public class Componentes extends JFrame{
 										}
 									}
 						        });
+								}
 							}
 				        });
 				        boton5.addActionListener (new ActionListener(){
 							public void actionPerformed(ActionEvent e){
+								if(pan==2) {
 								panelCentro2.setVisible(false);
 								panelClave = new JPanel( );
 						        conten.add( panelClave, BorderLayout.CENTER );
@@ -1756,6 +1775,7 @@ public class Componentes extends JFrame{
 										}
 									}
 								});
+								}
 							}
 				        });
 					}else {
